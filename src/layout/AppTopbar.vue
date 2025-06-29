@@ -4,9 +4,12 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { usePurchasesStore } from '@/stores/purchases';
 import { storeToRefs } from 'pinia';
+import { useToast, useConfirm } from 'primevue';
 
 const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
+const toast = useToast();
+const confirm = useConfirm();
 const purchasesStores = usePurchasesStore();
 const { purchasesRequests } = storeToRefs(purchasesStores);
 const router = useRouter();
@@ -14,6 +17,9 @@ const menu = ref();
 const callBackBar = ref(false);
 const purchasesInfo = ref(null);
 const infoDialog = ref(false);
+const accessLoading = ref(false);
+const denyLoading = ref(false);
+const purchasesLoading = ref(false);
 const toggle = (event) => {
     menu.value.toggle(event);
 };
@@ -37,9 +43,17 @@ const items = ref([
 
 async function getPurchasingRequests() {
     try {
+        purchasesLoading.value = true;
         await purchasesStores.getPurchasingRequests();
     } catch (error) {
-        return error;
+        toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error,
+            life: 3000
+        });
+    } finally {
+        purchasesLoading.value = false;
     }
 }
 
@@ -50,6 +64,83 @@ function showCallBackCount() {
 function openInfo(item) {
     purchasesInfo.value = item;
     infoDialog.value = true;
+}
+
+async function accessed() {
+    try {
+        accessLoading.value = true;
+        const data = await purchasesStores.setPurchasingRequest(purchasesInfo.value.id, 'accessed');
+        if (data.status == 200) {
+            toast.add({
+                severity: 'success',
+                summary: 'Удалено',
+                detail: 'Успешно отменено',
+                life: 3000
+            });
+            getPurchasingRequests();
+            infoDialog.value = false;
+        } else {
+            toast.add({
+                severity: 'error',
+                summary: 'Ошибка',
+                detail: 'Произошла ошибка при отмене',
+                life: 3000
+            });
+        }
+    } catch (error) {
+        toast.add({
+            severity: 'error',
+            summary: 'Ошибка',
+            detail: error,
+            life: 3000
+        });
+    } finally {
+        accessLoading.value = false;
+    }
+}
+
+async function denied() {
+    confirm.require({
+        message: `Вы уверены, что хотите отменить?`,
+        header: 'Подтвердите отмену',
+        icon: 'pi pi-info-circle',
+        acceptClass: 'p-button-danger',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        accept: async () => {
+            try {
+                denyLoading.value = true;
+                const data = await purchasesStores.setPurchasingRequest(purchasesInfo.value.id, 'denied');
+                if (data.status == 200) {
+                    toast.add({
+                        severity: 'success',
+                        summary: 'Удалено',
+                        detail: 'Успешно отменено',
+                        life: 3000
+                    });
+                    getPurchasingRequests();
+                    infoDialog.value = false;
+                } else {
+                    toast.add({
+                        severity: 'error',
+                        summary: 'Ошибка',
+                        detail: 'Произошла ошибка при отмене',
+                        life: 3000
+                    });
+                }
+            } catch (error) {
+                toast.add({
+                    severity: 'error',
+                    summary: 'Ошибка',
+                    detail: error,
+                    life: 3000
+                });
+            } finally {
+                denyLoading.value = false;
+            }
+        },
+        reject: () => {}
+    });
 }
 
 onMounted(() => {
@@ -134,7 +225,7 @@ onMounted(() => {
             </div>
         </template>
 
-        <div class="flex flex-col gap-4 mt-2">
+        <div v-if="!purchasesLoading" class="flex flex-col gap-4 mt-2">
             <div
                 v-for="(item, index) in purchasesRequests"
                 :key="item.id"
@@ -150,6 +241,9 @@ onMounted(() => {
                     <Button raised icon="pi pi-eye" severity="info" @click="openInfo(item)" />
                 </div>
             </div>
+        </div>
+        <div v-else>
+            <ProgressBar mode="indeterminate" class="my-4" style="height: 6px" />
         </div>
     </Drawer>
 
@@ -187,8 +281,15 @@ onMounted(() => {
         </div>
 
         <div class="flex justify-end gap-2 mt-6">
-            <Button icon="pi pi-times" label="Отказ" severity="danger" raised />
-            <Button icon="pi pi-check" label="Разрешить" raised />
+            <Button
+                icon="pi pi-times"
+                label="Отказ"
+                severity="danger"
+                :loading="denyLoading"
+                aised
+                @click="denied"
+            />
+            <Button icon="pi pi-check" label="Разрешить" :loading="accessLoading" raised @click="accessed" />
         </div>
     </Dialog>
 </template>

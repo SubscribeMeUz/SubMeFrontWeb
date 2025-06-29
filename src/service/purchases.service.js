@@ -22,11 +22,15 @@ export const purchasesService = {
         return data;
     },
     async setPurchasingRequest(request_id, status) {
-        const data = await axios.post(`/web/purchasing-requests/set/${request_id}`, {
-            params: {
-                status
+        const data = await axios.post(
+            `/web/purchasing-requests/set/${request_id}`,
+            {},
+            {
+                params: {
+                    status
+                }
             }
-        });
+        );
         return data;
     }
 };
