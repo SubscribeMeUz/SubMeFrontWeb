@@ -9,7 +9,7 @@ function loadLayoutConfig() {
               preset: 'Aura',
               primary: 'emerald',
               surface: null,
-              darkTheme: false, // Default to dark mode if not set
+              darkTheme: true, // Default to dark mode if not set
               menuMode: 'static'
           };
 }
@@ -88,7 +88,9 @@ export function useLayout() {
         layoutState.menuHoverActive = false;
     };
 
-    const isSidebarActive = computed(() => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive);
+    const isSidebarActive = computed(
+        () => layoutState.overlayMenuActive || layoutState.staticMenuMobileActive
+    );
 
     const isDarkTheme = computed(() => layoutConfig.darkTheme);
 
