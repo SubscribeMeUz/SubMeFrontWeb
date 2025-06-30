@@ -10,8 +10,8 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
 const toast = useToast();
 const confirm = useConfirm();
-const purchasesStores = usePurchasesStore();
-const { purchasesRequests } = storeToRefs(purchasesStores);
+const purchasesStore = usePurchasesStore();
+const { purchasesRequests } = storeToRefs(purchasesStore);
 const router = useRouter();
 const menu = ref();
 const callBackBar = ref(false);
@@ -20,6 +20,11 @@ const infoDialog = ref(false);
 const accessLoading = ref(false);
 const denyLoading = ref(false);
 const purchasesLoading = ref(false);
+const currentPage = ref(0);
+const count = ref(20);
+const dateFilter = ref(null);
+const abonimentId = ref(null);
+const userId = ref(null);
 const toggle = (event) => {
     menu.value.toggle(event);
 };
@@ -41,10 +46,29 @@ const items = ref([
     }
 ]);
 
+async function getPurchases() {
+    try {
+        await purchasesStore.getPurchases(
+            abonimentId.value,
+            userId.value,
+            currentPage.value + 1,
+            count.value,
+            dateFilter.value
+        );
+    } catch (error) {
+        toast.add({
+            severity: 'error',
+            summary: 'Ошибка',
+            detail: error,
+            life: 3000
+        });
+    }
+}
+
 async function getPurchasingRequests() {
     try {
         purchasesLoading.value = true;
-        await purchasesStores.getPurchasingRequests();
+        await purchasesStore.getPurchasingRequests();
     } catch (error) {
         toast.add({
             severity: 'error',
@@ -69,7 +93,7 @@ function openInfo(item) {
 async function accessed() {
     try {
         accessLoading.value = true;
-        const data = await purchasesStores.setPurchasingRequest(purchasesInfo.value.id, 'accessed');
+        const data = await purchasesStore.setPurchasingRequest(purchasesInfo.value.id, 'accessed');
         if (data.status == 200) {
             toast.add({
                 severity: 'success',
@@ -78,6 +102,7 @@ async function accessed() {
                 life: 3000
             });
             getPurchasingRequests();
+            getPurchases();
             infoDialog.value = false;
         } else {
             toast.add({
@@ -110,7 +135,7 @@ async function denied() {
         accept: async () => {
             try {
                 denyLoading.value = true;
-                const data = await purchasesStores.setPurchasingRequest(purchasesInfo.value.id, 'denied');
+                const data = await purchasesStore.setPurchasingRequest(purchasesInfo.value.id, 'denied');
                 if (data.status == 200) {
                     toast.add({
                         severity: 'success',
@@ -119,6 +144,7 @@ async function denied() {
                         life: 3000
                     });
                     getPurchasingRequests();
+                    getPurchases();
                     infoDialog.value = false;
                 } else {
                     toast.add({
@@ -249,7 +275,7 @@ onMounted(() => {
 
     <Dialog v-model:visible="infoDialog" modal header="Информация о покупке">
         <p class="text-xl font-bold mb-2 mt-6">Информация о пользователе:</p>
-        <div class="flex gap-6">
+        <div class="flex flex-wrap gap-6">
             <div class="flex gap-2">
                 <b>Имя:</b>
                 <p>{{ purchasesInfo?.user?.full_name }}</p>
@@ -261,7 +287,7 @@ onMounted(() => {
         </div>
 
         <p class="text-xl font-bold mt-6 mb-2">Информация об абонементе:</p>
-        <div class="flex gap-6">
+        <div class="flex flex-wrap gap-6">
             <div class="flex gap-2">
                 <b>Название плана:</b>
                 <p>{{ purchasesInfo?.aboniment?.plan_name }}</p>

@@ -157,8 +157,8 @@ onMounted(() => {
         </template>
 
         <Column field="id" header="ID" />
-        <Column field="name" header="name" />
-        <Column field="owner.full_name" header="owner" />
+        <Column field="name" header="Название" />
+        <Column field="owner.full_name" header="Владелец" />
         <Column style="width: 12%">
             <template #header><b class="mx-auto">Фото</b></template>
             <template #body="slotProps">
@@ -231,11 +231,11 @@ onMounted(() => {
         </template>
     </DataTable>
 
-    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Create provider">
+    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Создать провайдера">
         <AddProvider @created="created" />
     </Dialog>
 
-    <Dialog v-model:visible="editDalog" modal class="min-w-[350px]" header="Edit provider">
+    <Dialog v-model:visible="editDalog" modal class="min-w-[350px]" header="Изменить провайдера">
         <EditProvider :provider_id="provider_id" @edited="edited" />
     </Dialog>
 </template>

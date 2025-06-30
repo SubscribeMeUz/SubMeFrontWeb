@@ -86,11 +86,11 @@ onMounted(() => {
             <div class="flex flex-wrap gap-4">
                 <FloatLabel>
                     <InputText v-model="credentials.name" required class="w-96" />
-                    <label>Name</label>
+                    <label>Название</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputNumber v-model="credentials.price" :min="0" class="w-96" />
-                    <label>Price</label>
+                    <label>Цена</label>
                 </FloatLabel>
             </div>
             <div class="flex flex-wrap gap-4">
@@ -105,7 +105,7 @@ onMounted(() => {
                         show-clear
                         @change="selectProvider(credentials.provider_id)"
                     />
-                    <label>provider</label>
+                    <label>Список провайдеров</label>
                 </FloatLabel>
                 <FloatLabel>
                     <Select
@@ -117,7 +117,7 @@ onMounted(() => {
                         filter
                         show-clear
                     />
-                    <label>wokout times list</label>
+                    <label>Время работы</label>
                 </FloatLabel>
             </div>
             <div class="flex flex-wrap gap-4">
@@ -131,7 +131,7 @@ onMounted(() => {
                         filter
                         show-clear
                     />
-                    <label>provider tabs</label>
+                    <label>Список вкладок поставщиков</label>
                 </FloatLabel>
                 <FloatLabel>
                     <Select
@@ -143,7 +143,7 @@ onMounted(() => {
                         filter
                         show-clear
                     />
-                    <label>Aboniment packages</label>
+                    <label>Абонементные пакеты</label>
                 </FloatLabel>
             </div>
             <div class="flex justify-end">

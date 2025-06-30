@@ -7,25 +7,25 @@ const navItems = ref([
     {
         items: [
             {
-                label: 'User list',
+                label: 'Список пользователей',
                 icon: 'mdi mdi-account-group',
                 to: '/',
                 roles: ['admin', 'user', 'trainer', 'provider']
             },
             {
-                label: 'Provider list',
+                label: 'Список провайдеров',
                 icon: 'mdi mdi-devices',
                 to: '/provider/list',
                 roles: ['admin', 'user', 'trainer', 'provider']
             },
             {
-                label: 'Aboniments list',
+                label: 'Список абонементов',
                 icon: 'mdi mdi-calendar-multiselect-outline',
                 to: '/aboniments/list',
                 roles: ['admin', 'user', 'trainer', 'provider']
             },
             {
-                label: 'Purchases list',
+                label: 'Список покупок',
                 icon: 'mdi mdi-purse-outline',
                 to: '/purchases/list',
                 roles: ['admin', 'user', 'trainer', 'provider']

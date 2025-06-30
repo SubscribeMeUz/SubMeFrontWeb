@@ -106,17 +106,17 @@ onMounted(() => {
                             show-clear
                             @change="getPurchases()"
                         />
-                        <label>User list</label>
+                        <label>Список пользователей</label>
                     </FloatLabel>
                 </form>
             </div>
         </template>
 
         <Column field="id" header="ID" />
-        <Column field="aboniment.name" header="Aboniment name" />
-        <Column field="user.full_name" header="User name" />
-        <Column field="used_count" header="Used count" />
-        <Column field="status" header="Status" />
+        <Column field="aboniment.name" header="Название абонемента" />
+        <Column field="user.full_name" header="Имя пользователя" />
+        <Column field="used_count" header="Использовано раз" />
+        <Column field="status" header="Статус" />
 
         <template #footer>
             <Paginator
@@ -138,7 +138,7 @@ onMounted(() => {
         </template>
     </DataTable>
 
-    <Dialog v-model:visible="createDialog" modal header="Create purchases" class="min-w-[500px]">
+    <Dialog v-model:visible="createDialog" modal header="Создать покупку" class="min-w-[500px]">
         <AddPurchases :userList="userList" @created="created" />
     </Dialog>
 </template>

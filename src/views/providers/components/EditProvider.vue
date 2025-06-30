@@ -82,15 +82,15 @@ onMounted(() => {
     <form ref="createForm" @submit.prevent="editProvider">
         <div class="my-6 flex gap-6 flex-wrap">
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Name</label>
+                <label class="font-bold ml-1">Название</label>
                 <InputText v-model="name" class="w-96" />
             </div>
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Logo</label>
+                <label class="font-bold ml-1">Логотип</label>
                 <FileInput v-model="logo" class="w-96" />
             </div>
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Owner</label>
+                <label class="font-bold ml-1">Владелец</label>
                 <Select
                     v-model="owner_id"
                     :options="userList"

@@ -133,18 +133,18 @@ async function edit() {
 
             <template #header>
                 <div class="flex justify-between">
-                    <p class="text-2xl font-bold">Aboniment Packages</p>
+                    <p class="text-2xl font-bold">Абонементные пакеты</p>
                     <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
                 </div>
             </template>
 
             <Column field="id" header="ID" />
-            <Column field="title" sortable header="Title" />
-            <Column field="subtitle" sortable header="subtitle" />
-            <Column field="plan_name" sortable header="plan_name" />
-            <Column field="label" sortable header="label" />
-            <Column field="count" sortable header="count" />
-            <Column field="expiry_days" sortable header="expiry_days" />
+            <Column field="title" sortable header="Заголовок" />
+            <Column field="subtitle" sortable header="Подзаголовок" />
+            <Column field="plan_name" sortable header="Название плана" />
+            <Column field="label" sortable header="Метка" />
+            <Column field="count" sortable header="Количество" />
+            <Column field="expiry_days" sortable header="Срок действия (в днях)" />
             <Column style="width: 12%">
                 <template #header>
                     <div class="mx-auto">
@@ -172,33 +172,33 @@ async function edit() {
         </DataTable>
     </div>
 
-    <Dialog v-model:visible="createDialog" modal header="Create aboniment package">
+    <Dialog v-model:visible="createDialog" modal header="Создать абонементный пакет">
         <form ref="createForm" class="mt-5 flex flex-col gap-8" @submit.prevent="create">
             <div class="flex gap-7 flex-col">
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputText v-model="createCredentials.plan_name" required class="w-96" />
-                        <label>plan_name</label>
+                        <label>Название плана</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputText v-model="createCredentials.label" class="w-96" />
-                        <label>label</label>
+                        <label>Метка</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputText v-model="createCredentials.title" required class="w-96" />
-                        <label>title</label>
+                        <label>Заголовок</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputText v-model="createCredentials.subtitle" required class="w-96" />
-                        <label>subtitle</label>
+                        <label>Подзаголовок</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputNumber v-model="createCredentials.count" :min="0" showButtons class="w-96" />
-                        <label>count</label>
+                        <label>Количество</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputNumber
@@ -207,13 +207,13 @@ async function edit() {
                             showButtons
                             class="w-96"
                         />
-                        <label>expiry_days</label>
+                        <label>Срок действия (в днях)</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputNumber v-model="createCredentials.discount" :min="0" showButtons class="w-96" />
-                        <label>discount</label>
+                        <label>Скидка</label>
                     </FloatLabel>
                 </div>
             </div>
@@ -229,37 +229,37 @@ async function edit() {
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputText v-model="editItem.plan_name" required class="w-96" />
-                        <label>plan_name</label>
+                        <label>Название плана</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputText v-model="editItem.label" class="w-96" />
-                        <label>label</label>
+                        <label>Метка</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputText v-model="editItem.title" required class="w-96" />
-                        <label>title</label>
+                        <label>Заголовок</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputText v-model="editItem.subtitle" required class="w-96" />
-                        <label>subtitle</label>
+                        <label>Подзаголовок</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputNumber v-model="editItem.count" :min="0" showButtons class="w-96" />
-                        <label>count</label>
+                        <label>Количество</label>
                     </FloatLabel>
                     <FloatLabel>
                         <InputNumber v-model="editItem.expiry_days" :min="0" showButtons class="w-96" />
-                        <label>expiry_days</label>
+                        <label>Срок действия (в днях)</label>
                     </FloatLabel>
                 </div>
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <InputNumber v-model="editItem.discount" :min="0" showButtons class="w-96" />
-                        <label>discount</label>
+                        <label>Скидка</label>
                     </FloatLabel>
                 </div>
             </div>

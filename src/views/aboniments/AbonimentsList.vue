@@ -151,8 +151,8 @@ onMounted(() => {
         </template>
 
         <Column field="id" header="ID" />
-        <Column field="name" header="Name" />
-        <Column field="price" header="Price" />
+        <Column field="name" header="Название" />
+        <Column field="price" header="Цена" />
 
         <Column style="width: 10%">
             <template #header>
@@ -199,10 +199,10 @@ onMounted(() => {
         </template>
     </DataTable>
 
-    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Create aboniment">
+    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Создать абонемент">
         <AddAboniment @created="created" />
     </Dialog>
-    <Dialog v-model:visible="editDalog" modal class="min-w-[700px]" header="Edit aboniment">
+    <Dialog v-model:visible="editDalog" modal class="min-w-[700px]" header="Изменить абонемент">
         <EditAboniment :aboniment_id="aboniment_id" @edited="edited" />
     </Dialog>
 </template>

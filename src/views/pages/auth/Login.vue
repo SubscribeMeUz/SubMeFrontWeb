@@ -72,9 +72,9 @@ async function login() {
                             <div class="underline"></div>
                         </div>
                         <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium my-4">
-                            Welcome to SubMe!
+                            Добро пожаловать в SubMe!
                         </div>
-                        <span class="text-muted-color font-medium">Sign in to continue</span>
+                        <span class="text-muted-color font-medium">Войдите, чтобы продолжить</span>
                     </div>
 
                     <form ref="loginForm" @submit.prevent="login">
@@ -82,13 +82,13 @@ async function login() {
                             for="username"
                             class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2"
                         >
-                            Username
+                            Имя пользователя
                         </label>
                         <InputText
                             v-model="authCredentials.username"
                             id="username"
                             type="text"
-                            placeholder="Username"
+                            placeholder="Имя пользователя"
                             required
                             class="w-full md:w-[30rem] mb-8"
                         />
@@ -97,19 +97,19 @@ async function login() {
                             for="pass"
                             class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2"
                         >
-                            Password
+                            Пароль
                         </label>
                         <Password
                             v-model="authCredentials.password"
                             inputId="pass"
-                            placeholder="Password"
+                            placeholder="Пароль"
                             :toggleMask="true"
                             class="mb-4"
                             fluid
                             :feedback="false"
                         />
 
-                        <Button label="Sign In" class="w-full" type="submit" raised :loading="loading" />
+                        <Button label="Войти" class="w-full" type="submit" raised :loading="loading" />
                     </form>
                 </div>
             </div>

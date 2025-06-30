@@ -112,9 +112,9 @@ onMounted(() => {
 
         <Tabs :value="tab">
             <TabList>
-                <Tab :value="0">Provider tabs</Tab>
-                <Tab :value="1">Workout times</Tab>
-                <Tab :value="2">Aboniment packages</Tab>
+                <Tab :value="0">Панели провайдеров</Tab>
+                <Tab :value="1">Время работы</Tab>
+                <Tab :value="2">Абонементные пакеты</Tab>
             </TabList>
 
             <Tabpanels>

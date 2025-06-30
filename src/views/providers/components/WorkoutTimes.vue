@@ -127,16 +127,16 @@ async function edit() {
 
             <template #header>
                 <div class="flex justify-between">
-                    <p class="text-2xl font-bold">Workout times</p>
+                    <p class="text-2xl font-bold">Время работы</p>
                     <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
                 </div>
             </template>
 
             <Column field="id" header="ID" />
-            <Column field="title" sortable header="Title" />
-            <Column field="from_time" sortable header="From time" />
-            <Column field="to_time" sortable header="To time" />
-            <Column field="discount" sortable header="Discount" />
+            <Column field="title" sortable header="Заголовок" />
+            <Column field="from_time" sortable header="С какого времени" />
+            <Column field="to_time" sortable header="До какого времени" />
+            <Column field="discount" sortable header="Скидка" />
 
             <Column style="width: 12%">
                 <template #header>
@@ -165,24 +165,24 @@ async function edit() {
         </DataTable>
     </div>
 
-    <Dialog v-model:visible="createDialog" modal header="Create workout times">
+    <Dialog v-model:visible="createDialog" modal header="Создать время тренировок">
         <form ref="createForm" class="mt-5 flex flex-col gap-8" @submit.prevent="create">
             <div class="flex gap-7 flex-col">
                 <FloatLabel>
                     <InputText v-model="createCredentials.title" required class="w-96" />
-                    <label>Title</label>
+                    <label>Заголовок</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputMask v-model="createCredentials.from_time" mask="99:99" class="w-96" />
-                    <label>From time</label>
+                    <label>С какого времени</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputMask v-model="createCredentials.to_time" mask="99:99" class="w-96" />
-                    <label>To time</label>
+                    <label>До какого времени</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputNumber v-model="createCredentials.discount" :min="0" showButtons class="w-96" />
-                    <label>Discount</label>
+                    <label>Скидка</label>
                 </FloatLabel>
             </div>
             <div class="flex justify-end">
@@ -191,24 +191,24 @@ async function edit() {
         </form>
     </Dialog>
 
-    <Dialog v-model:visible="editDalog" modal header="Edit workout times">
+    <Dialog v-model:visible="editDalog" modal header="Редактировать время тренировок">
         <form ref="editForm" class="mt-5 flex flex-col gap-8" @submit.prevent="edit">
             <div class="flex gap-7 flex-col">
                 <FloatLabel>
                     <InputText v-model="editItem.title" required class="w-96" />
-                    <label>Title</label>
+                    <label>Заголовок</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputMask v-model="editItem.from_time" mask="99:99" class="w-96" />
-                    <label>From time</label>
+                    <label>С какого времени</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputMask v-model="editItem.to_time" mask="99:99" class="w-96" />
-                    <label>To time</label>
+                    <label>До какого времени</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputNumber v-model="editItem.discount" :min="0" showButtons class="w-96" />
-                    <label>Discount</label>
+                    <label>Скидка</label>
                 </FloatLabel>
             </div>
             <div class="flex justify-end">

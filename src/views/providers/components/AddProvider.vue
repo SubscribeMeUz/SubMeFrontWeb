@@ -29,12 +29,12 @@ function getCurrentLocation() {
                 location_long.value = position.coords.longitude;
             },
             (error) => {
-                console.error('Geolocation xatolik:', error.message);
-                alert('Joylashuvga kirish rad etildi yoki xatolik yuz berdi.');
+                console.error('Ошибка геолокации:', error.message);
+                alert('Доступ к местоположению был отклонён или произошла ошибка.');
             }
         );
     } else {
-        alert('Brauzeringiz Geolocation API ni qo‘llab-quvvatlamaydi.');
+        alert('Ваш браузер не поддерживает Geolocation API');
     }
 }
 
@@ -84,15 +84,15 @@ onMounted(() => {
     <form ref="createForm" @submit.prevent="createProvider">
         <div class="my-6 flex gap-6 flex-wrap">
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Name</label>
+                <label class="font-bold ml-1">Название</label>
                 <InputText v-model="name" class="w-96" />
             </div>
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Logo</label>
+                <label class="font-bold ml-1">Логотип</label>
                 <FileInput v-model="logo" class="w-96" />
             </div>
             <div class="flex flex-col">
-                <label class="font-bold ml-1">Owner</label>
+                <label class="font-bold ml-1">Владелец</label>
                 <Select
                     v-model="owner_id"
                     :options="userList"

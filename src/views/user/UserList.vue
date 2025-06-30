@@ -105,10 +105,10 @@ onMounted(() => {
         </template>
 
         <Column field="id" header="ID" />
-        <Column field="username" header="username" />
-        <Column field="phone" header="phone" />
-        <Column field="full_name" header="full_name" />
-        <Column field="role" header="role" />
+        <Column field="username" header="Имя пользователя" />
+        <Column field="phone" header="Телефон" />
+        <Column field="full_name" header="Полное имя (ФИО)" />
+        <Column field="role" header="Роль" />
         <Column style="width: 8%">
             <template #header>
                 <div class="mx-auto">
@@ -148,11 +148,11 @@ onMounted(() => {
         </template>
     </DataTable>
 
-    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Create user">
+    <Dialog v-model:visible="createDialog" modal class="min-w-[350px]" header="Создать пользователя">
         <CreateUser @created="created" />
     </Dialog>
 
-    <Dialog v-model:visible="editDalog" modal class="min-w-[350px]" header="Edit user">
+    <Dialog v-model:visible="editDalog" modal class="min-w-[350px]" header="Редактировать пользователя">
         <EditUser :id="userId" @edited="edited" />
     </Dialog>
 </template>

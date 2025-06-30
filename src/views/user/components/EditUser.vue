@@ -47,31 +47,31 @@ onMounted(() => {
         <div class="flex gap-6 flex-wrap">
             <FloatLabel>
                 <InputText v-model="userInfo.username" required class="w-96" />
-                <label>username</label>
+                <label>Имя пользователя</label>
             </FloatLabel>
             <FloatLabel>
                 <Select v-model="userInfo.role" :options="roleList" class="w-96" />
-                <label>role</label>
+                <label>Роль</label>
             </FloatLabel>
         </div>
         <div class="flex gap-6 flex-wrap">
             <FloatLabel>
                 <InputText v-model="userInfo.full_name" required class="w-96" />
-                <label>full_name</label>
+                <label>Полное имя (ФИО)</label>
             </FloatLabel>
             <FloatLabel>
                 <InputMask v-model="userInfo.phone" mask="+999999999999" required class="w-96" />
-                <label>phone</label>
+                <label>Телефон</label>
             </FloatLabel>
         </div>
         <div class="flex gap-6 flex-wrap">
             <FloatLabel>
                 <InputText v-model="userInfo.password" class="w-96" />
-                <label>password</label>
+                <label>Текущий пароль</label>
             </FloatLabel>
             <FloatLabel>
                 <InputText v-model="userInfo.new_password" class="w-96" />
-                <label>password</label>
+                <label>Новый пароль</label>
             </FloatLabel>
         </div>
 

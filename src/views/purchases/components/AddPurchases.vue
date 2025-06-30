@@ -82,7 +82,7 @@ onMounted(() => {
                     class="w-96"
                     filter
                 />
-                <label>User list</label>
+                <label>Список пользователей</label>
             </FloatLabel>
             <FloatLabel>
                 <Select
@@ -94,7 +94,7 @@ onMounted(() => {
                     filter
                     @change="selectProvider(provider_id)"
                 />
-                <label>Provider list</label>
+                <label>Список провайдеров</label>
             </FloatLabel>
         </div>
         <FloatLabel>
@@ -106,7 +106,7 @@ onMounted(() => {
                 class="w-96"
                 filter
             />
-            <label>Aboniment list</label>
+            <label>Список абонементов</label>
         </FloatLabel>
         <div class="flex justify-end">
             <Button label="Создать" raised :loading="createLoading" type="submit" />

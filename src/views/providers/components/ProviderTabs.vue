@@ -108,7 +108,7 @@ async function edit() {
 <template>
     <div class="border-[1px] rounded-md p-4">
         <div class="flex justify-between">
-            <p class="text-2xl font-bold">Provider tabs</p>
+            <p class="text-2xl font-bold">Панели провайдеров</p>
             <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
         </div>
 
@@ -120,11 +120,11 @@ async function edit() {
                             <b class="text-[18px]">{{ tab.title }}</b>
                         </div>
                         <div class="flex gap-2">
-                            <b>Label: </b>
+                            <b>Название: </b>
                             <p>{{ tab.label }}</p>
                         </div>
                         <div class="flex gap-2">
-                            <b>Value: </b>
+                            <b>Значение: </b>
                             <p>{{ tab.value }}</p>
                         </div>
                     </div>
@@ -140,20 +140,20 @@ async function edit() {
         </div>
     </div>
 
-    <Dialog v-model:visible="createDialog" header="Create tab" modal>
+    <Dialog v-model:visible="createDialog" header="Создать вкладку" modal>
         <form ref="createForm" class="mt-5 flex flex-col gap-8" @submit.prevent="create">
             <div class="flex gap-7 flex-col">
                 <FloatLabel>
                     <InputText v-model="createCredentials.title" required class="w-96" />
-                    <label>Title</label>
+                    <label>Заголовок</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputText v-model="createCredentials.label" required class="w-96" />
-                    <label>Label</label>
+                    <label>Название</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputText v-model="createCredentials.value" required class="w-96" />
-                    <label>Value</label>
+                    <label>Значение</label>
                 </FloatLabel>
             </div>
             <div class="flex justify-end">
@@ -162,20 +162,20 @@ async function edit() {
         </form>
     </Dialog>
 
-    <Dialog v-model:visible="editDialog" header="Edit tab" modal>
+    <Dialog v-model:visible="editDialog" header="Редактировать вкладку" modal>
         <form ref="editForm" class="mt-5 flex flex-col gap-8" @submit.prevent="edit">
             <div class="flex gap-7 flex-col">
                 <FloatLabel>
                     <InputText v-model="tabItems.title" required class="w-96" />
-                    <label>Title</label>
+                    <label>Заголовок</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputText v-model="tabItems.label" required class="w-96" />
-                    <label>Label</label>
+                    <label>Название</label>
                 </FloatLabel>
                 <FloatLabel>
                     <InputText v-model="tabItems.value" required class="w-96" />
-                    <label>Value</label>
+                    <label>Значение</label>
                 </FloatLabel>
             </div>
             <div class="flex justify-end">
