@@ -46,6 +46,10 @@ export const useProviderStore = defineStore('provider', {
         async getProviderTabsById(id) {
             const data = await providerService.getProviderTabsById(id);
             return data;
+        },
+        async addPhotoToProvider(id, item) {
+            const data = await providerService.addPhotoToProvider(id, item);
+            return data;
         }
     }
 });

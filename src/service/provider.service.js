@@ -46,5 +46,9 @@ export const providerService = {
     async getProviderTabsById(provider_id) {
         const { data } = await axios.get(`/web/tabs/get-all/${provider_id}`);
         return data;
+    },
+    async addPhotoToProvider(provider_id, item) {
+        const data = await axios.post(`/web/providers/add-photo/${provider_id}`, item);
+        return data;
     }
 };

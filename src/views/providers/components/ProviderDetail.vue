@@ -5,6 +5,8 @@ import ProviderTabs from './ProviderTabs.vue';
 import { useToast } from 'primevue';
 import WorkoutTimes from './WorkoutTimes.vue';
 import AbonimentPackages from './AbonimentPackages.vue';
+import PhotoProviders from './PhotoProviders.vue';
+import router from '@/router';
 
 const props = defineProps({
     id: [String, Number]
@@ -20,6 +22,7 @@ const workoutTimes = ref(null);
 const abonimentPackages = ref(null);
 const loading = ref(false);
 const tab = ref(0);
+const photos = ref(null);
 
 async function getProviderDetail() {
     try {
@@ -34,6 +37,9 @@ async function getProviderDetail() {
         }
         if (providerDetail.value.aboniment_packages && providerDetail.value.aboniment_packages.length > 0) {
             abonimentPackages.value = providerDetail.value?.aboniment_packages;
+        }
+        if (providerDetail.value.photos && providerDetail.value.photos.length > 0) {
+            photos.value = providerDetail.value?.photos;
         }
     } catch (error) {
         return error;
@@ -112,9 +118,20 @@ onMounted(() => {
 
         <Tabs :value="tab">
             <TabList>
-                <Tab :value="0">Панели провайдеров</Tab>
-                <Tab :value="1">Время работы</Tab>
-                <Tab :value="2">Абонементные пакеты</Tab>
+                <div class="flex justify-between items-center w-full pr-3">
+                    <div>
+                        <Tab :value="0">Панели провайдеров</Tab>
+                        <Tab :value="1">Время работы</Tab>
+                        <Tab :value="2">Абонементные пакеты</Tab>
+                        <Tab :value="3">Фото провайдеров</Tab>
+                    </div>
+                    <Button
+                        icon="pi pi-arrow-left"
+                        label="Назад"
+                        severity="secondary"
+                        @click="router.push('/provider/list')"
+                    />
+                </div>
             </TabList>
 
             <Tabpanels>
@@ -142,6 +159,14 @@ onMounted(() => {
                         @created="createdItem"
                         @deleted="deletedItem"
                         @edited="editedItem"
+                    />
+                </TabPanel>
+                <TabPanel :value="3">
+                    <PhotoProviders
+                        :providerId="props.id"
+                        :photos="photos"
+                        @created="createdItem"
+                        @deleted="deletedItem"
                     />
                 </TabPanel>
             </Tabpanels>
