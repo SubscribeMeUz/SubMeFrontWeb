@@ -50,5 +50,9 @@ export const providerService = {
     async addPhotoToProvider(provider_id, item) {
         const data = await axios.post(`/web/providers/add-photo/${provider_id}`, item);
         return data;
+    },
+    async deletePhotoProvider(photo_id) {
+        const data = await axios.delete(`/web/providers/delete-photo/${photo_id}`);
+        return data;
     }
 };

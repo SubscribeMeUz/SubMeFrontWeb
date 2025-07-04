@@ -21,7 +21,7 @@ const providerTabs = ref(null);
 const workoutTimes = ref(null);
 const abonimentPackages = ref(null);
 const loading = ref(false);
-const tab = ref(3);
+const tab = ref(0);
 const photos = ref(null);
 
 async function getProviderDetail() {
@@ -70,6 +70,7 @@ function createdItem(data) {
 async function deletedItem(data) {
     providerTabs.value = [];
     workoutTimes.value = [];
+    photos.value = [];
     if (data.status == 200) {
         toast.add({
             severity: 'success',

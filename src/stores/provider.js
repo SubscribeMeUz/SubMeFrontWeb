@@ -50,6 +50,10 @@ export const useProviderStore = defineStore('provider', {
         async addPhotoToProvider(id, item) {
             const data = await providerService.addPhotoToProvider(id, item);
             return data;
+        },
+        async deletePhotoProvider(id) {
+            const data = await providerService.deletePhotoProvider(id);
+            return data;
         }
     }
 });
