@@ -46,6 +46,11 @@ const router = createRouter({
             name: 'notfound',
             component: () => import('@/views/pages/NotFound.vue')
         },
+        {
+            path: '/privacy-policy',
+            name: 'privacy-policy',
+            component: () => import('@/views/pages/PrivacyPolicy.vue')
+        },
 
         {
             path: '/auth/login',
