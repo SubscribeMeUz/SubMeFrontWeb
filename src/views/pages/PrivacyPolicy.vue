@@ -6,7 +6,7 @@
             </template>
             <template #content>
                 <ScrollPanel style="max-height: 85vh" class="custom-scroll">
-                    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">Effective Date: [Insert Date]</p>
+                    <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">Effective Date: July 8, 2025</p>
 
                     <p class="mb-4">
                         SubscribeMe ("we", "our", or "us") operates the SubMe mobile application (the "App").
