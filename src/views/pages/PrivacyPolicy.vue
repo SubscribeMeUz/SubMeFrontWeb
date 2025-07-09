@@ -133,9 +133,6 @@
 </template>
 
 <script setup>
-import Card from 'primevue/card';
-import ScrollPanel from 'primevue/scrollpanel';
-import Divider from 'primevue/divider';
 import { useLayout } from '@/layout/composables/layout';
 
 const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();

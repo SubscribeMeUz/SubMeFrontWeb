@@ -39,12 +39,12 @@ export const abonimentsService = {
         const url = URL.createObjectURL(blob);
         window.open(url, '_blank');
 
-        // const url = URL.createObjectURL(new Blob([data]));
-        // const link = document.createElement('a');
-        // link.href = url;
-        // link.setAttribute('download', `QR-${aboniment_id}.png`);
-        // document.body.appendChild(link);
-        // link.click();
+        /* const url = URL.createObjectURL(new Blob([data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `QR-${aboniment_id}.png`);
+        document.body.appendChild(link);
+        link.click(); */
         return data;
     }
 };

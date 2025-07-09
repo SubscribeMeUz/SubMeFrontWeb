@@ -34,7 +34,7 @@ function submitForm() {
 </script>
 
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-50">
+    <div class="flex items-center justify-center min-h-screen">
         <div class="card p-6 max-w-3xl w-full">
             <h2 class="text-3xl font-bold mb-4">Удаление аккаунта</h2>
 
