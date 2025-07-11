@@ -128,22 +128,6 @@ function edited(data) {
     }
 }
 
-async function getQR(id) {
-    try {
-        tableLoading.value = true;
-        await abonimentStore.getAbonimentQrCode(id);
-    } catch (error) {
-        toast.add({
-            severity: 'error',
-            summary: 'Ошибка',
-            detail: error,
-            life: 3000
-        });
-    } finally {
-        tableLoading.value = false;
-    }
-}
-
 onMounted(() => {
     getAboniments();
 });
@@ -179,12 +163,6 @@ onMounted(() => {
 
             <template #body="slotProps">
                 <div class="flex justify-center gap-2 flex-wrap">
-                    <Button
-                        icon="pi pi-qrcode"
-                        raised
-                        severity="secondary"
-                        @click="getQR(slotProps.data.id)"
-                    />
                     <Button
                         icon="pi pi-pencil"
                         severity="info"

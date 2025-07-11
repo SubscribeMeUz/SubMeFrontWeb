@@ -30,10 +30,6 @@ export const useAbonimentStore = defineStore('aboniments', {
         async editAboniment(id, item) {
             const data = await abonimentsService.editAboniment(id, item);
             return data;
-        },
-        async getAbonimentQrCode(id) {
-            const data = await abonimentsService.getAbonimentQrCode(id);
-            return data;
         }
     }
 });

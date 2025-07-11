@@ -160,7 +160,36 @@ async function deletePhoto(id) {
         </div>
 
         <div v-else>
-            <p class="p-3 my-4 rounded-md text-gray-900 bg-slate-100">Информация не найдена</p>
+            <div class="card rounded-xl w-80 min-h-44 flex flex-col gap-4 p-4 mt-8">
+                <div class="flex flex-col gap-4">
+                    <input
+                        type="file"
+                        :ref="setFileInput"
+                        accept="image/*"
+                        @change="handleFileChange"
+                        style="display: none"
+                    />
+
+                    <img
+                        :src="src"
+                        class="border-[1px] rounded-md cursor-pointer"
+                        alt="Image"
+                        @click="selectImage"
+                        style="
+                            width: 100%;
+                            height: 150px;
+                            overflow: hidden;
+                            object-fit: contain;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        "
+                    />
+                </div>
+                <div v-if="src != '/addPhoto.png'" class="flex gap-1 justify-end">
+                    <Button icon="pi pi-check" raised :loading="createLoading" @click="addPhoto" />
+                </div>
+            </div>
         </div>
     </div>
 </template>

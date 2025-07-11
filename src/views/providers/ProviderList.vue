@@ -134,6 +134,22 @@ function providerDetail(id) {
     router.push(`/provider/detail/${id}`);
 }
 
+async function getQR(id) {
+    try {
+        tableLoading.value = true;
+        await providerStore.getQrCode(id);
+    } catch (error) {
+        toast.add({
+            severity: 'error',
+            summary: 'Ошибка',
+            detail: error,
+            life: 3000
+        });
+    } finally {
+        tableLoading.value = false;
+    }
+}
+
 onMounted(() => {
     getProviders();
 });
@@ -190,11 +206,12 @@ onMounted(() => {
             <template #body="slotProps">
                 <div class="flex justify-center gap-2 flex-wrap">
                     <Button
-                        icon="pi pi-eye"
-                        severity="warn"
+                        icon="pi pi-qrcode"
                         raised
-                        @click="providerDetail(slotProps.data.id)"
+                        severity="secondary"
+                        @click="getQR(slotProps.data.id)"
                     />
+                    <Button icon="pi pi-eye" severity="" raised @click="providerDetail(slotProps.data.id)" />
                     <Button
                         icon="pi pi-pencil"
                         severity="info"

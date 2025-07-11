@@ -54,6 +54,10 @@ export const useProviderStore = defineStore('provider', {
         async deletePhotoProvider(id) {
             const data = await providerService.deletePhotoProvider(id);
             return data;
+        },
+        async getQrCode(id) {
+            const data = await providerService.getQrCode(id);
+            return data;
         }
     }
 });

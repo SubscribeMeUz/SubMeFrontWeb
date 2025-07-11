@@ -54,5 +54,21 @@ export const providerService = {
     async deletePhotoProvider(photo_id) {
         const data = await axios.delete(`/web/providers/delete-photo/${photo_id}`);
         return data;
+    },
+    async getQrCode(provider_id) {
+        const { data } = await axios.get(`/web/aboniments/qr-code-by-provider/${provider_id}`, {
+            responseType: 'blob'
+        });
+        const blob = new Blob([data], { type: 'image/png' });
+        const url = URL.createObjectURL(blob);
+        window.open(url, '_blank');
+
+        /* const url = URL.createObjectURL(new Blob([data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `QR-${aboniment_id}.png`);
+        document.body.appendChild(link);
+        link.click(); */
+        return data;
     }
 };
