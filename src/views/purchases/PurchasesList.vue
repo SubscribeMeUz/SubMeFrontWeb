@@ -114,9 +114,11 @@ onMounted(() => {
 
         <Column field="id" header="ID" />
         <Column field="aboniment.name" header="Название абонемента" />
-        <Column field="user.full_name" header="Имя пользователя" />
+        <Column field="user.phone" header="Номер телефона" />
         <Column field="used_count" header="Использовано раз" />
-        <Column field="status" header="Статус" />
+        <Column field="status" header="Статус">
+            <template #body></template>
+        </Column>
 
         <template #footer>
             <Paginator

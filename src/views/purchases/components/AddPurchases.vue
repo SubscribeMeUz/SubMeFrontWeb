@@ -77,7 +77,7 @@ onMounted(() => {
                 <Select
                     v-model="credentials.user_id"
                     :options="userList"
-                    option-label="full_name"
+                    option-label="phone"
                     option-value="id"
                     class="w-96"
                     filter
