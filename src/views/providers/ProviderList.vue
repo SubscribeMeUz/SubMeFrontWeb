@@ -22,6 +22,7 @@ const tableLoading = ref(false);
 const createDialog = ref(false);
 const editDalog = ref(false);
 const provider_id = ref(null);
+const role = localStorage.getItem('user_role');
 
 async function getProviders() {
     try {
@@ -161,7 +162,13 @@ onMounted(() => {
 
         <template #header>
             <div class="flex gap-2 justify-between flex-wrap">
-                <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
+                <Button
+                    v-if="role == 'admin'"
+                    label="Создать"
+                    raised
+                    icon="pi pi-plus"
+                    @click="openCreateDialog"
+                />
                 <form ref="searchForm" class="flex gap-2 flex-wrap" @submit.prevent="getProviders">
                     <FloatLabel>
                         <InputText v-model="search" style="width: 15cqmax" />
@@ -213,12 +220,14 @@ onMounted(() => {
                     />
                     <Button icon="pi pi-eye" severity="" raised @click="providerDetail(slotProps.data.id)" />
                     <Button
+                        v-if="role == 'admin'"
                         icon="pi pi-pencil"
                         severity="info"
                         raised
                         @click="openEditDialog(slotProps.data.id)"
                     />
                     <Button
+                        v-if="role == 'admin'"
                         raised
                         severity="danger"
                         icon="pi pi-trash"
