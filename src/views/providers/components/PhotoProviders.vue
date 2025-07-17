@@ -99,7 +99,7 @@ async function deletePhoto(id) {
                     <div class="card rounded-xl w-80 min-h-44 flex flex-col gap-4 p-4">
                         <div class="flex flex-col gap-4">
                             <Image
-                                :src="photo.photo_url"
+                                :src="photo.path"
                                 preview
                                 class="border-[1px] rounded-md"
                                 style="
