@@ -7,6 +7,12 @@ const navItems = ref([
     {
         items: [
             {
+                label: 'Статистика',
+                icon: 'mdi mdi-chart-bar',
+                to: '/stats',
+                roles: ['admin', 'user', 'trainer', 'provider']
+            },
+            {
                 label: 'Список пользователей',
                 icon: 'mdi mdi-account-group',
                 to: '/',
