@@ -8,7 +8,7 @@ import EditUser from './components/EditUser.vue';
 
 const userStore = useUserStore();
 const { users } = storeToRefs(userStore);
-
+const role = localStorage.getItem('user_role');
 const toast = useToast();
 
 const currentPage = ref(0);
@@ -93,7 +93,13 @@ onMounted(() => {
 
         <template #header>
             <div class="flex gap-2 justify-between flex-wrap">
-                <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
+                <Button
+                    v-if="role == 'admin'"
+                    label="Создать"
+                    raised
+                    icon="pi pi-plus"
+                    @click="openCreateDialog"
+                />
                 <form ref="searchForm" class="flex gap-2 flex-wrap" @submit.prevent="getUsers">
                     <FloatLabel>
                         <InputText v-model="search" style="width: 15cqmax" />
