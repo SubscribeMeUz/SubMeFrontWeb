@@ -9,7 +9,7 @@ const props = defineProps({
 const emit = defineEmits(['edited']);
 
 const userStore = useUserStore();
-
+const role = localStorage.getItem('user_role');
 const userInfo = ref(null);
 const loading = ref(false);
 const roleList = ref(null);
@@ -64,7 +64,7 @@ onMounted(() => {
                 <label>Телефон</label>
             </FloatLabel>
         </div>
-        <div class="flex gap-6 flex-wrap">
+        <div v-if="role == 'admin'" class="flex gap-6 flex-wrap">
             <FloatLabel>
                 <InputText v-model="userInfo.password" class="w-96" />
                 <label>Текущий пароль</label>
