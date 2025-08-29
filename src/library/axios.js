@@ -3,7 +3,7 @@ import router from '@/router';
 
 axios.defaults.baseURL = 'https://api.subme.uz/';
 // axios.defaults.baseURL = 'http://193.31.28.118:8000/';
-// axios.defaults.baseURL = 'http://172.29.64.76:9000/';
+// axios.defaults.baseURL = 'http://172.29.64.76:9090/';
 
 axios.defaults.headers.common.Accept = 'application/json';
 axios.defaults.withCredentials = false;

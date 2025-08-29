@@ -8,8 +8,27 @@ const navItems = ref([
         items: [
             {
                 label: 'Статистика',
-                icon: 'mdi mdi-chart-bar',
-                to: '/stats',
+                icon: 'mdi mdi-chart-multiple',
+                items: [
+                    {
+                        label: 'Статистика',
+                        icon: 'mdi mdi-chart-bar',
+                        to: '/stats',
+                        roles: ['admin', 'user', 'trainer', 'provider']
+                    },
+                    {
+                        label: 'Время продаж',
+                        icon: 'mdi mdi-chart-timeline',
+                        to: '/user/list/by-time',
+                        roles: ['admin', 'user', 'trainer', 'provider']
+                    },
+                    {
+                        label: 'История покупок пользователей',
+                        icon: 'mdi mdi-clipboard-text-clock-outline',
+                        to: '/purchases/history',
+                        roles: ['admin', 'user', 'trainer', 'provider']
+                    }
+                ],
                 roles: ['admin', 'user', 'trainer', 'provider']
             },
             {

@@ -28,6 +28,10 @@ export const useStatisticsStore = defineStore('statistics', {
             const data = await StatisticsService.getUsesWithTime(from_date, to_date, provider_id);
             this.usesWithTime = data;
             return data;
+        },
+        async getUserListByUseTimes(items) {
+            const data = await StatisticsService.getUserListByUseTimes(items);
+            return data;
         }
     }
 });

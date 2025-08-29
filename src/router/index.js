@@ -48,6 +48,16 @@ const router = createRouter({
                     path: '/purchases/list',
                     name: 'purchases-list',
                     component: () => import('@/views/purchases/PurchasesList.vue')
+                },
+                {
+                    path: '/user/list/by-time',
+                    name: '/user-list-by-time',
+                    component: () => import('@/views/stats/UserListByUseTimes.vue')
+                },
+                {
+                    path: '/purchases/history',
+                    name: 'purchases-history',
+                    component: () => import('@/views/stats/PurchasesHistory.vue')
                 }
             ]
         },

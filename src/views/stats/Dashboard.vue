@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted, ref, nextTick } from 'vue';
 import { useProviderStore } from '@/stores/provider';
-import ActiveAboniments from './ActiveAboniments.vue';
-import DailyPurchases from './DailyPurchases.vue';
-import UserAboniments from './UserAboniments.vue';
-import UsesWithTime from './UsesWithTime.vue';
+import ActiveAboniments from './components/ActiveAboniments.vue';
+import DailyPurchases from './components/DailyPurchases.vue';
+import UserAboniments from './components/UserAboniments.vue';
+import UsesWithTime from './components/UsesWithTime.vue';
 
 const providerStore = useProviderStore();
 

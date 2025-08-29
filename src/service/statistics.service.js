@@ -40,5 +40,9 @@ export const StatisticsService = {
             }
         });
         return data;
+    },
+    async getUserListByUseTimes(items) {
+        const { data } = await axios.post('/statistics/get-user-list-by-usetimes', items);
+        return data;
     }
 };
