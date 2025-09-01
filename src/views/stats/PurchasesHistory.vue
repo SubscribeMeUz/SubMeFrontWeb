@@ -19,7 +19,7 @@ const credentials = reactive({
     phone: '',
     from_date: previousDate,
     to_date: today,
-    aboniment_id: null
+    abonoment_id: null
 });
 
 const providerList = ref(null);
@@ -55,7 +55,7 @@ async function getPurchasesHistory() {
 
 function resetFilter() {
     credentials.provider_id = null;
-    credentials.aboniment_id = null;
+    credentials.abonoment_id = null;
     credentials.name = '';
     credentials.phone = '';
     credentials.from_date = previousDate;
@@ -109,7 +109,7 @@ onMounted(() => {
                     </FloatLabel>
                     <FloatLabel>
                         <Select
-                            v-model="credentials.aboniment_id"
+                            v-model="credentials.abonoment_id"
                             :options="abonimentList"
                             option-value="id"
                             option-label="name"
@@ -128,6 +128,7 @@ onMounted(() => {
         <Column field="user_name" header="Название" />
         <Column field="user_phone" header="Телефон номер" />
         <Column field="provider_name" header="Провайдеры" />
+        <Column field="abonoment_package_name" header="Абонементные пакеты" />
         <Column field="aboniment_name" header="Абонементы" />
         <Column field="total_amount" header="Общее количество" />
     </DataTable>
