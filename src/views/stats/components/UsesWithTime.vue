@@ -29,6 +29,7 @@ const props = defineProps({
 
 const statisticsStore = useStatisticsStore();
 const { usesWithTime } = storeToRefs(statisticsStore);
+const interval_hours = ref(2);
 
 const barChartOption = ref({
     title: { text: 'Uses with time', left: 'center', top: 15 },
@@ -83,7 +84,8 @@ async function getUsesWithTime() {
     await statisticsStore.getUsesWithTime(
         formatDate(props.from_date),
         formatDate(props.to_date),
-        props.provider_id
+        props.provider_id,
+        interval_hours.value
     );
     const names = [];
     const values = [];

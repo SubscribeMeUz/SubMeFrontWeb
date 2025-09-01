@@ -31,18 +31,23 @@ export const StatisticsService = {
         });
         return data;
     },
-    async getUsesWithTime(from_date, to_date, provider_id) {
+    async getUsesWithTime(from_date, to_date, provider_id, interval_hours) {
         const { data } = await axios.get('/statistics/get-uses-with-time', {
             params: {
                 from_date,
                 to_date,
-                provider_id
+                provider_id,
+                interval_hours
             }
         });
         return data;
     },
     async getUserListByUseTimes(items) {
         const { data } = await axios.post('/statistics/get-user-list-by-usetimes', items);
+        return data;
+    },
+    async getPurchasesHistory(item) {
+        const { data } = await axios.post('/statistics/get-purchase-history', item);
         return data;
     }
 };

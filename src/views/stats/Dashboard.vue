@@ -77,7 +77,7 @@ onMounted(() => {
 
 <template>
     <div class="card">
-        <form ref="searchForm" class="flex gap-4 py-2" @submit.prevent="getAllStatistics">
+        <form ref="searchForm" class="flex flex-wrap gap-4 py-2" @submit.prevent="getAllStatistics">
             <FloatLabel>
                 <DatePicker v-model="from_date" date-format="yy-mm-dd" />
                 <label>Дата начала</label>
@@ -110,31 +110,31 @@ onMounted(() => {
     </div>
 
     <div class="card">
-        <div class="grid grid-cols-1 gap-6">
+        <div class="grid grid-cols-2">
             <DailyPurchases
                 ref="dailyPurchasesRef"
                 :from_date="from_date"
                 :to_date="to_date"
                 :provider_id="provider_id"
             />
-        </div>
-        <div class="grid grid-cols-2 gap-6">
             <ActiveAboniments
                 ref="activeAbonimentsRef"
                 :from_date="from_date"
                 :to_date="to_date"
                 :provider_id="provider_id"
             />
-            <UserAboniments
-                ref="userAbonimentsRef"
+        </div>
+        <div class="grid grid-cols-1">
+            <UsesWithTime
+                ref="usesWithTimeRef"
                 :from_date="from_date"
                 :to_date="to_date"
                 :provider_id="provider_id"
             />
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <UsesWithTime
-                ref="usesWithTimeRef"
+        <div class="grid grid-cols-1">
+            <UserAboniments
+                ref="userAbonimentsRef"
                 :from_date="from_date"
                 :to_date="to_date"
                 :provider_id="provider_id"

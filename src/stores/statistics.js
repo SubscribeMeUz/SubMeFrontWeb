@@ -24,13 +24,22 @@ export const useStatisticsStore = defineStore('statistics', {
             this.userAboniment = data;
             return data;
         },
-        async getUsesWithTime(from_date, to_date, provider_id) {
-            const data = await StatisticsService.getUsesWithTime(from_date, to_date, provider_id);
+        async getUsesWithTime(from_date, to_date, provider_id, interval_hours) {
+            const data = await StatisticsService.getUsesWithTime(
+                from_date,
+                to_date,
+                provider_id,
+                interval_hours
+            );
             this.usesWithTime = data;
             return data;
         },
         async getUserListByUseTimes(items) {
             const data = await StatisticsService.getUserListByUseTimes(items);
+            return data;
+        },
+        async getPurchasesHistory(item) {
+            const data = await StatisticsService.getPurchasesHistory(item);
             return data;
         }
     }
