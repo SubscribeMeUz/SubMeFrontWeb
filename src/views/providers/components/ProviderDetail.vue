@@ -121,9 +121,9 @@ onMounted(() => {
             <TabList>
                 <div class="flex justify-between items-center w-full pr-3">
                     <div>
-                        <Tab :value="0">Панели провайдеров</Tab>
+                        <Tab :value="0">Виды продуктов</Tab>
                         <Tab :value="1">Время работы</Tab>
-                        <Tab :value="2">Абонементные пакеты</Tab>
+                        <Tab :value="2">Настройка тарифного пакета</Tab>
                         <Tab :value="3">Фото провайдеров</Tab>
                     </div>
                     <Button

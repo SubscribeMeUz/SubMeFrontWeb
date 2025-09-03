@@ -129,5 +129,11 @@ onMounted(() => {
         <Column field="phone" header="Телефон номер" />
         <Column field="provider_name" header="Провайдеры" />
         <Column field="aboniment_name" header="Абонементы" />
+        <Column field="use_date" header="Время последнего использования">
+            <template #body="slotProps">
+                {{ slotProps.data.use_date.split('T')[0] }}
+                {{ slotProps.data.use_date.split('T')[1] }}
+            </template>
+        </Column>
     </DataTable>
 </template>

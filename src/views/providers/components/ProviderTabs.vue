@@ -108,7 +108,7 @@ async function edit() {
 <template>
     <div class="border-[1px] rounded-md p-4">
         <div class="flex justify-between">
-            <p class="text-2xl font-bold">Панели провайдеров</p>
+            <p class="text-2xl font-bold">Виды продуктов</p>
             <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
         </div>
 

@@ -133,7 +133,7 @@ async function edit() {
 
             <template #header>
                 <div class="flex justify-between">
-                    <p class="text-2xl font-bold">Абонементные пакеты</p>
+                    <p class="text-2xl font-bold">Настройка тарифного пакета</p>
                     <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
                 </div>
             </template>

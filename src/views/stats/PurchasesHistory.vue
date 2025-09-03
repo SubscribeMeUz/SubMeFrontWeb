@@ -131,5 +131,11 @@ onMounted(() => {
         <Column field="abonoment_package_name" header="Абонементные пакеты" />
         <Column field="aboniment_name" header="Абонементы" />
         <Column field="total_amount" header="Общее количество" />
+        <Column field="purchase_date" header="Дата покупки">
+            <template #body="slotProps">
+                {{ slotProps.data.purchase_date.split('T')[0] }}
+                {{ slotProps.data.purchase_date.split('T')[1] }}
+            </template>
+        </Column>
     </DataTable>
 </template>
