@@ -29,7 +29,7 @@ async function login() {
             });
 
             if (data.data.user.role == 'admin') {
-                router.push('/stats');
+                router.push('/dashboard');
             }
             if (data.data.user.role == 'provider') {
                 router.push('/provider/list');
