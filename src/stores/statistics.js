@@ -45,6 +45,10 @@ export const useStatisticsStore = defineStore('statistics', {
         async getAllClientInfo(items) {
             const data = await StatisticsService.getAllClientInfo(items);
             return data;
+        },
+        async getRejectionAndAcceptCount(from_date, to_date) {
+            const data = await StatisticsService.getRejectionAndAcceptCount(from_date, to_date);
+            return data;
         }
     }
 });

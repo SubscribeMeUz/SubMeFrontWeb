@@ -5,13 +5,13 @@ import ActiveAboniments from './components/ActiveAboniments.vue';
 import DailyPurchases from './components/DailyPurchases.vue';
 import UserAboniments from './components/UserAboniments.vue';
 import UsesWithTime from './components/UsesWithTime.vue';
+import RejectAndAccepts from './components/RejectAndAccepts.vue';
 
 const providerStore = useProviderStore();
 
 const today = new Date();
 const previousDate = new Date(today);
 previousDate.setDate(today.getDate() - 30);
-today.setDate(today.getDate() - 3);
 const from_date = ref(formatDate(previousDate));
 const to_date = ref(formatDate(today));
 const provider_id = ref(null);
@@ -22,6 +22,7 @@ const activeAbonimentsRef = ref();
 const dailyPurchasesRef = ref();
 const userAbonimentsRef = ref();
 const usesWithTimeRef = ref();
+const rejectAndAcceptsRef = ref();
 
 function formatDate(inputDate) {
     const date = new Date(inputDate);
@@ -69,6 +70,7 @@ async function getStatistics() {
         await dailyPurchasesRef.value.getDailyPurchases();
         await userAbonimentsRef.value.getUserAbonimentUses();
         await usesWithTimeRef.value.getUsesWithTime();
+        await rejectAndAcceptsRef.value.getRejectionAndAcceptCount();
     } catch (error) {
         return error;
     }
@@ -115,35 +117,46 @@ onMounted(() => {
     </div>
 
     <div class="card">
-        <div class="grid grid-cols-2">
-            <DailyPurchases
-                ref="dailyPurchasesRef"
-                :from_date="from_date"
-                :to_date="to_date"
-                :provider_id="provider_id"
-            />
-            <ActiveAboniments
-                ref="activeAbonimentsRef"
-                :from_date="from_date"
-                :to_date="to_date"
-                :provider_id="provider_id"
-            />
+        <div class="grid grid-cols-12">
+            <div class="col-span-6">
+                <DailyPurchases
+                    ref="dailyPurchasesRef"
+                    :from_date="from_date"
+                    :to_date="to_date"
+                    :provider_id="provider_id"
+                />
+            </div>
+            <div class="col-span-6">
+                <ActiveAboniments
+                    ref="activeAbonimentsRef"
+                    :from_date="from_date"
+                    :to_date="to_date"
+                    :provider_id="provider_id"
+                />
+            </div>
         </div>
-        <div class="grid grid-cols-1">
-            <UsesWithTime
-                ref="usesWithTimeRef"
-                :from_date="from_date"
-                :to_date="to_date"
-                :provider_id="provider_id"
-            />
+        <div class="grid grid-cols-12">
+            <div class="col-span-8">
+                <UsesWithTime
+                    ref="usesWithTimeRef"
+                    :from_date="from_date"
+                    :to_date="to_date"
+                    :provider_id="provider_id"
+                />
+            </div>
+            <div class="col-span-4 mt-8">
+                <RejectAndAccepts ref="rejectAndAcceptsRef" :from_date="from_date" :to_date="to_date" />
+            </div>
         </div>
-        <div class="grid grid-cols-1">
-            <UserAboniments
-                ref="userAbonimentsRef"
-                :from_date="from_date"
-                :to_date="to_date"
-                :provider_id="provider_id"
-            />
+        <div class="grid grid-cols-12">
+            <div class="col-span-12">
+                <UserAboniments
+                    ref="userAbonimentsRef"
+                    :from_date="from_date"
+                    :to_date="to_date"
+                    :provider_id="provider_id"
+                />
+            </div>
         </div>
     </div>
 </template>

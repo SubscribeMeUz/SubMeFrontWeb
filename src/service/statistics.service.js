@@ -53,5 +53,14 @@ export const StatisticsService = {
     async getAllClientInfo(items) {
         const { data } = await axios.post('/statistics/get-all-client-info', items);
         return data;
+    },
+    async getRejectionAndAcceptCount(from_date, to_date) {
+        const { data } = await axios.get('/statistics/get-rejection-acception-count', {
+            params: {
+                from_date,
+                to_date
+            }
+        });
+        return data;
     }
 };

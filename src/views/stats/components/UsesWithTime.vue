@@ -32,7 +32,7 @@ const { usesWithTime } = storeToRefs(statisticsStore);
 const interval_hours = ref(2);
 
 const barChartOption = ref({
-    title: { text: 'Uses with time', left: 'center', top: 15 },
+    title: { text: 'График продаж по времени', left: 'center', top: 15 },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -40,7 +40,7 @@ const barChartOption = ref({
         }
     },
     legend: {
-        data: ['Uses with time'],
+        data: ['График продаж по времени'],
         top: 'bottom'
     },
     xAxis: {
@@ -52,14 +52,14 @@ const barChartOption = ref({
     },
     yAxis: {
         type: 'value',
-        name: 'Amount',
+        name: 'Количество',
         axisLabel: {
             formatter: '{value}'
         }
     },
     series: [
         {
-            name: 'Uses with time',
+            name: 'График продаж по времени',
             data: [],
             type: 'bar',
             smooth: true,

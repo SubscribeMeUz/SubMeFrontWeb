@@ -31,7 +31,7 @@ const statisticsStore = useStatisticsStore();
 const { activeAboniments } = storeToRefs(statisticsStore);
 
 const chartOption = ref({
-    title: { text: 'Active Aboniments', left: 'center', top: 20 },
+    title: { text: 'Активные абонементы', left: 'center', top: 20 },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -39,17 +39,17 @@ const chartOption = ref({
         }
     },
     legend: {
-        data: ['Active Aboniments'],
+        data: ['Активные абонементы'],
         top: 'bottom'
     },
     xAxis: {
         type: 'category',
         data: []
     },
-    yAxis: { type: 'value', name: 'Amount' },
+    yAxis: { type: 'value', name: 'Количество' },
     series: [
         {
-            name: 'Active Aboniments',
+            name: 'Активные абонементы',
             data: [],
             type: 'bar',
             smooth: true

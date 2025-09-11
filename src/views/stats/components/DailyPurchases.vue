@@ -31,7 +31,7 @@ const statisticsStore = useStatisticsStore();
 const { dailyPurchases } = storeToRefs(statisticsStore);
 
 const lineChartOption = ref({
-    title: { text: 'Dailiy Purchases', left: 'center', top: 15 },
+    title: { text: 'Ежедневные покупки', left: 'center', top: 15 },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -39,7 +39,7 @@ const lineChartOption = ref({
         }
     },
     legend: {
-        data: ['Sales count'],
+        data: ['Количество продаж'],
         top: 'bottom'
     },
     xAxis: {
@@ -51,14 +51,14 @@ const lineChartOption = ref({
     },
     yAxis: {
         type: 'value',
-        name: 'Amount',
+        name: 'Количество',
         axisLabel: {
             formatter: '{value}'
         }
     },
     series: [
         {
-            name: 'Sales count',
+            name: 'Количество продаж',
             data: [],
             type: 'line',
             smooth: true,
