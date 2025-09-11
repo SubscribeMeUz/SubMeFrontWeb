@@ -37,7 +37,7 @@ async function getAbonimentByProviderId(id) {
         abonimentList.value = data;
     } else {
         abonimentList.value = null;
-        credentials.aboniment_id = null;
+        credentials.abonoment_id = null;
     }
 }
 

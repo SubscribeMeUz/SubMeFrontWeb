@@ -39,11 +39,15 @@ function formatDate(inputDate) {
 }
 
 async function getUserAbonimentUses() {
-    await statisticsStore.getUserAbonimentUses(
-        formatDate(props.from_date),
-        formatDate(props.to_date),
-        props.provider_id
-    );
+    try {
+        await statisticsStore.getUserAbonimentUses(
+            formatDate(props.from_date),
+            formatDate(props.to_date),
+            props.provider_id
+        );
+    } catch (error) {
+        return error;
+    }
 }
 
 defineExpose({

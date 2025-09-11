@@ -64,10 +64,14 @@ async function resetFilter() {
 }
 
 async function getStatistics() {
-    await activeAbonimentsRef.value.getActiveAboniments();
-    await dailyPurchasesRef.value.getDailyPurchases();
-    await userAbonimentsRef.value.getUserAbonimentUses();
-    await usesWithTimeRef.value.getUsesWithTime();
+    try {
+        await activeAbonimentsRef.value.getActiveAboniments();
+        await dailyPurchasesRef.value.getDailyPurchases();
+        await userAbonimentsRef.value.getUserAbonimentUses();
+        await usesWithTimeRef.value.getUsesWithTime();
+    } catch (error) {
+        return error;
+    }
 }
 
 onMounted(() => {

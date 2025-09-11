@@ -58,6 +58,11 @@ const router = createRouter({
                     path: '/purchases/history',
                     name: 'purchases-history',
                     component: () => import('@/views/stats/PurchasesHistory.vue')
+                },
+                {
+                    path: '/all/client/info',
+                    name: 'all-client-info',
+                    component: () => import('@/views/stats/AllClientInfo.vue')
                 }
             ]
         },

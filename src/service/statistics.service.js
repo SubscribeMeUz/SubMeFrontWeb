@@ -49,5 +49,9 @@ export const StatisticsService = {
     async getPurchasesHistory(item) {
         const { data } = await axios.post('/statistics/get-purchase-history', item);
         return data;
+    },
+    async getAllClientInfo(items) {
+        const { data } = await axios.post('/statistics/get-all-client-info', items);
+        return data;
     }
 };

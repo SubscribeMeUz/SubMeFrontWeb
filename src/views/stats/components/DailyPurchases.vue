@@ -80,21 +80,25 @@ function formatDate(inputDate) {
 }
 
 async function getDailyPurchases() {
-    await statisticsStore.getDailyPurchases(
-        formatDate(props.from_date),
-        formatDate(props.to_date),
-        props.provider_id
-    );
-    const names = [];
-    const values = [];
+    try {
+        await statisticsStore.getDailyPurchases(
+            formatDate(props.from_date),
+            formatDate(props.to_date),
+            props.provider_id
+        );
+        const names = [];
+        const values = [];
 
-    dailyPurchases.value.forEach((item) => {
-        names.push(item.date);
-        values.push(item.total_sales);
-    });
+        dailyPurchases.value.forEach((item) => {
+            names.push(item.date);
+            values.push(item.total_sales);
+        });
 
-    lineChartOption.value.xAxis.data = names;
-    lineChartOption.value.series[0].data = values;
+        lineChartOption.value.xAxis.data = names;
+        lineChartOption.value.series[0].data = values;
+    } catch (error) {
+        return error;
+    }
 }
 
 defineExpose({

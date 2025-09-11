@@ -81,22 +81,26 @@ function formatDate(inputDate) {
 }
 
 async function getUsesWithTime() {
-    await statisticsStore.getUsesWithTime(
-        formatDate(props.from_date),
-        formatDate(props.to_date),
-        props.provider_id,
-        interval_hours.value
-    );
-    const names = [];
-    const values = [];
+    try {
+        await statisticsStore.getUsesWithTime(
+            formatDate(props.from_date),
+            formatDate(props.to_date),
+            props.provider_id,
+            interval_hours.value
+        );
+        const names = [];
+        const values = [];
 
-    usesWithTime.value.forEach((item) => {
-        names.push(item.hour);
-        values.push(item.total_sales);
-    });
+        usesWithTime.value.forEach((item) => {
+            names.push(item.hour);
+            values.push(item.total_sales);
+        });
 
-    barChartOption.value.xAxis.data = names;
-    barChartOption.value.series[0].data = values;
+        barChartOption.value.xAxis.data = names;
+        barChartOption.value.series[0].data = values;
+    } catch (error) {
+        return error;
+    }
 }
 
 defineExpose({

@@ -41,6 +41,10 @@ export const useStatisticsStore = defineStore('statistics', {
         async getPurchasesHistory(item) {
             const data = await StatisticsService.getPurchasesHistory(item);
             return data;
+        },
+        async getAllClientInfo(items) {
+            const data = await StatisticsService.getAllClientInfo(items);
+            return data;
         }
     }
 });

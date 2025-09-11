@@ -27,6 +27,12 @@ const navItems = ref([
                         icon: 'mdi mdi-clipboard-text-clock-outline',
                         to: '/purchases/history',
                         roles: ['admin', 'user', 'trainer', 'provider']
+                    },
+                    {
+                        label: 'Информация клиентов',
+                        icon: 'mdi mdi-account-group-outline',
+                        to: '/all/client/info',
+                        roles: ['admin', 'user', 'trainer', 'provider']
                     }
                 ],
                 roles: ['admin', 'user', 'trainer', 'provider']

@@ -66,21 +66,25 @@ function formatDate(inputDate) {
 }
 
 async function getActiveAboniments() {
-    await statisticsStore.getActiveAboniments(
-        formatDate(props.from_date),
-        formatDate(props.to_date),
-        props.provider_id
-    );
-    const names = [];
-    const values = [];
+    try {
+        await statisticsStore.getActiveAboniments(
+            formatDate(props.from_date),
+            formatDate(props.to_date),
+            props.provider_id
+        );
+        const names = [];
+        const values = [];
 
-    activeAboniments.value.forEach((item) => {
-        names.push(item.aboniment_name);
-        values.push(item.active_count);
-    });
+        activeAboniments.value.forEach((item) => {
+            names.push(item.aboniment_name);
+            values.push(item.active_count);
+        });
 
-    chartOption.value.xAxis.data = names;
-    chartOption.value.series[0].data = values;
+        chartOption.value.xAxis.data = names;
+        chartOption.value.series[0].data = values;
+    } catch (error) {
+        return error;
+    }
 }
 
 defineExpose({
