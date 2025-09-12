@@ -74,7 +74,7 @@ onMounted(() => {
         <template #empty>Информация не найдена</template>
 
         <template #header>
-            <form ref="searchForm" class="flex gap-4 flex-col" @submit.prevent="getUserListByUseTimes">
+            <form ref="searchForm" class="flex gap-6 flex-col" @submit.prevent="getUserListByUseTimes">
                 <div class="flex flex-wrap gap-4">
                     <FloatLabel>
                         <DatePicker v-model="credentials.from_date" date-format="yy-mm-dd" class="w-80" />

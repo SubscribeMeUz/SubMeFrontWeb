@@ -26,9 +26,8 @@ const option = ref({
         trigger: 'item'
     },
     legend: {
-        orient: 'vertical',
-        left: '',
-        top: 'center'
+        orient: 'horizontal',
+        bottom: '5%'
     },
     series: [
         {
