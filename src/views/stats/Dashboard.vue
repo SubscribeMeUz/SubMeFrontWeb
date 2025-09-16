@@ -11,8 +11,7 @@ const providerStore = useProviderStore();
 
 const today = new Date();
 const previousDate = new Date(today);
-previousDate.setDate(today.getDate() - 30);
-today.setDate(today.getDate() - 1);
+previousDate.setDate(today.getDate() - 90);
 const from_date = ref(formatDate(previousDate));
 const to_date = ref(formatDate(today));
 const provider_id = ref(null);

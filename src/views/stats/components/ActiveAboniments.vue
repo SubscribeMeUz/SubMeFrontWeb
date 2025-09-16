@@ -8,6 +8,7 @@ import { BarChart, LineChart, PieChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, GridComponent, LegendComponent } from 'echarts/components';
 import { UniversalTransition } from 'echarts/features';
 import { ref } from 'vue';
+import { useToast } from 'primevue';
 
 use([
     CanvasRenderer,
@@ -26,6 +27,8 @@ const props = defineProps({
     to_date: [String, Date],
     provider_id: [String, Number]
 });
+
+const toast = useToast();
 
 const statisticsStore = useStatisticsStore();
 const { activeAboniments } = storeToRefs(statisticsStore);
@@ -83,7 +86,12 @@ async function getActiveAboniments() {
         chartOption.value.xAxis.data = names;
         chartOption.value.series[0].data = values;
     } catch (error) {
-        return error;
+        toast.add({
+            severity: 'error',
+            summary: error,
+            detail: 'Error',
+            life: 3000
+        });
     }
 }
 

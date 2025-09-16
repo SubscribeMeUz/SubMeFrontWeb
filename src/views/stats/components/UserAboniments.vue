@@ -1,10 +1,9 @@
 <script setup>
 import { useStatisticsStore } from '@/stores/statistics';
-import { storeToRefs } from 'pinia';
 import VChart, { THEME_KEY } from 'vue-echarts';
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
-import { BarChart, LineChart, PieChart } from 'echarts/charts';
+import { BarChart, LineChart, PieChart, TreeChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, GridComponent, LegendComponent } from 'echarts/components';
 import { UniversalTransition } from 'echarts/features';
 import { ref } from 'vue';
@@ -13,6 +12,7 @@ use([
     CanvasRenderer,
     BarChart,
     LineChart,
+    TreeChart,
     PieChart,
     TitleComponent,
     TooltipComponent,
@@ -28,7 +28,7 @@ const props = defineProps({
 });
 
 const statisticsStore = useStatisticsStore();
-const { userAboniment } = storeToRefs(statisticsStore);
+const response = ref();
 
 function formatDate(inputDate) {
     const date = new Date(inputDate);
@@ -40,7 +40,7 @@ function formatDate(inputDate) {
 
 async function getUserAbonimentUses() {
     try {
-        await statisticsStore.getUserAbonimentUses(
+        response.value = await statisticsStore.getUserAbonimentUses(
             formatDate(props.from_date),
             formatDate(props.to_date),
             props.provider_id
@@ -50,6 +50,56 @@ async function getUserAbonimentUses() {
     }
 }
 
+const option = ref({
+    tooltip: {
+        trigger: 'item',
+        triggerOn: 'mousemove' // yoki 'click'
+    },
+    series: [
+        {
+            type: 'tree',
+            data: [
+                {
+                    name: 'Root',
+                    children: [
+                        {
+                            name: 'Child 1',
+                            children: [{ name: 'Grandchild 1' }, { name: 'Grandchild 2' }]
+                        },
+                        {
+                            name: 'Child 2'
+                        }
+                    ]
+                }
+            ],
+            top: '1%',
+            left: '7%',
+            bottom: '1%',
+            right: '20%',
+
+            symbolSize: 15, // tugun (node) o‘lchami
+
+            label: {
+                position: 'left',
+                verticalAlign: 'middle',
+                align: 'right',
+                fontSize: 14
+            },
+            leaves: {
+                label: {
+                    position: 'right',
+                    verticalAlign: 'middle',
+                    align: 'left'
+                }
+            },
+
+            expandAndCollapse: true, // ochib yopilishi
+            animationDuration: 550,
+            animationDurationUpdate: 750
+        }
+    ]
+});
+
 defineExpose({
     getUserAbonimentUses
 });
@@ -57,6 +107,11 @@ defineExpose({
 
 <template>
     <div></div>
+    <!-- <v-chart v-if="option" :option="option" class="chart"></v-chart> -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.chart {
+    height: 50vh;
+}
+</style>

@@ -74,8 +74,8 @@ async function getRejectionAndAcceptCount() {
         );
         response.value = data;
 
-        option.value.series[0].data[0].value = response.value?.new;
-        option.value.series[0].data[1].value = response.value?.accessed;
+        option.value.series[0].data[0].value = response.value?.new || 0;
+        option.value.series[0].data[1].value = response.value?.accessed || 0;
         option.value.series[0].data[2].value = response.value?.denied || 0;
     } catch (error) {
         return error;
