@@ -30,26 +30,6 @@ const props = defineProps({
 const statisticsStore = useStatisticsStore();
 const response = ref();
 
-function formatDate(inputDate) {
-    const date = new Date(inputDate);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-    const year = date.getFullYear();
-    return `${year}-${month}-${day}`;
-}
-
-async function getUserAbonimentUses() {
-    try {
-        response.value = await statisticsStore.getUserAbonimentUses(
-            formatDate(props.from_date),
-            formatDate(props.to_date),
-            props.provider_id
-        );
-    } catch (error) {
-        return error;
-    }
-}
-
 const option = ref({
     tooltip: {
         trigger: 'item',
@@ -58,20 +38,7 @@ const option = ref({
     series: [
         {
             type: 'tree',
-            data: [
-                {
-                    name: 'Root',
-                    children: [
-                        {
-                            name: 'Child 1',
-                            children: [{ name: 'Grandchild 1' }, { name: 'Grandchild 2' }]
-                        },
-                        {
-                            name: 'Child 2'
-                        }
-                    ]
-                }
-            ],
+            data: [],
             top: '1%',
             left: '7%',
             bottom: '1%',
@@ -100,6 +67,50 @@ const option = ref({
     ]
 });
 
+function formatDate(inputDate) {
+    const date = new Date(inputDate);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
+}
+
+function transformData(response) {
+    return [
+        {
+            name: 'Root',
+            children: response.map((dateItem) => ({
+                name: dateItem.date,
+                children: dateItem.providers.map((provider) => ({
+                    name: provider.provider_name,
+                    value: provider.aboniments.length,
+                    children: provider.aboniments.map((aboniment) => ({
+                        name: aboniment.aboniment_name,
+                        value: aboniment.users.length,
+                        children: aboniment.users.map((user) => ({
+                            name: user.full_name
+                        }))
+                    }))
+                }))
+            }))
+        }
+    ];
+}
+
+async function getUserAbonimentUses() {
+    try {
+        response.value = await statisticsStore.getUserAbonimentUses(
+            formatDate(props.from_date),
+            formatDate(props.to_date),
+            props.provider_id
+        );
+
+        option.value.series[0].data = transformData(response.value);
+    } catch (error) {
+        return error;
+    }
+}
+
 defineExpose({
     getUserAbonimentUses
 });
@@ -107,7 +118,7 @@ defineExpose({
 
 <template>
     <div></div>
-    <!-- <v-chart v-if="option" :option="option" class="chart"></v-chart> -->
+    <v-chart v-if="option" :option="option" class="chart"></v-chart>
 </template>
 
 <style scoped>

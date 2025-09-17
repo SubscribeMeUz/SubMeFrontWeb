@@ -23,13 +23,13 @@ const navItems = ref([
                         roles: ['admin', 'user', 'trainer', 'provider']
                     },
                     {
-                        label: 'История покупок пользователей',
+                        label: 'Покупки клиентов',
                         icon: 'mdi mdi-clipboard-text-clock-outline',
                         to: '/purchases/history',
                         roles: ['admin', 'user', 'trainer', 'provider']
                     },
                     {
-                        label: 'Информация клиентов',
+                        label: 'Клиенты',
                         icon: 'mdi mdi-account-group-outline',
                         to: '/all/client/info',
                         roles: ['admin', 'user', 'trainer', 'provider']

@@ -93,7 +93,7 @@ onMounted(() => {
 
         <template #header>
             <div class="flex gap-2 justify-between flex-wrap">
-                <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" />
+                <!-- <Button label="Создать" raised icon="pi pi-plus" @click="openCreateDialog" /> -->
                 <form ref="searchForm" class="flex gap-2 flex-wrap" @submit.prevent="getPurchases">
                     <FloatLabel>
                         <Select
@@ -115,6 +115,7 @@ onMounted(() => {
         <Column field="id" header="ID" />
         <Column field="aboniment.name" header="Название абонемента" />
         <Column field="user.phone" header="Номер телефона" />
+        <Column field="user.full_name" header="Имя пользователя" />
         <Column field="used_count" header="Использовано раз" />
         <Column field="status" header="Статус" />
 
